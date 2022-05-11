@@ -6,10 +6,14 @@ go:
 
 bin:
   ascii-image-converter:
-    url: https://github.com/TheZoraiz/ascii-image-converter/releases/download/v{{.Version}}/ascii-image-converter_{{ if eq .OS "linux" }}Linux{{ else }}{{if eq .OS "darwin" }}macOS{{ else }}Windows{{ end }}{{ end }}_{{ if eq .Arch "amd64" }}amd64_64bit{{ else }}arm64_64bit{{end}}.tar.gz
+    url: https://github.com/TheZoraiz/ascii-image-converter/releases/download/v{{.Version}}/ascii-image-converter_{{ if eq .OS "linux" }}Linux{{ else }}{{if eq .OS "darwin" }}macOS{{ else }}Windows{{ end }}{{ end }}_{{ if eq .Arch "amd64" }}amd64_64bit{{ else }}arm64_64bit{{end}}.{{ if eq .OS "windows"}}zip{{else}}tar.gz{{end}}
     version: "1.11.0"
+    entrypoint: '{{ if eq .OS "windows" }}ascii-image-converter.exe{{else}}ascii-image-converter{{end}}'
     tgzPaths:
       - ascii-image-converter_{{ if eq .OS "linux" }}Linux{{ else }}{{if eq .OS "darwin" }}macOS{{ else }}Windows{{ end }}{{ end }}_{{ if eq .Arch "amd64" }}amd64_64bit{{ else }}arm64_64bit{{end}}/ascii-image-converter
+    zipPaths:
+      - ascii-image-converter_Windows_{{ if eq .Arch "amd64" }}amd64_64bit{{ else }}arm64_64bit{{end}}/ascii-image-converter.exe
     sha:
       linux-amd64: "17f87445971fdb491c6ca9d4beed67044a330339b47775adffb8e3cb898ec15d"
       darwin-amd64: "c22c862818b4af5be9cdd11d49cf147cb2fea354a5d13ad3ef54702b5b1391a4"
+      windows-amd64: "1c549e6aee6817dd7dd06377e6b198589cbaca17f848b09c523542c6b2a0cee4"
