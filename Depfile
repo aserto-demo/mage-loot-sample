@@ -5,10 +5,11 @@ go:
     version: "v1.3.9"
 
 bin:
-  ascii-image-converter: 
-    url: https://github.com/TheZoraiz/ascii-image-converter/releases/download/v{{.Version}}/ascii-image-converter_Linux_amd64_64bit.tar.gz
+  ascii-image-converter:
+    url: https://github.com/TheZoraiz/ascii-image-converter/releases/download/v{{.Version}}/ascii-image-converter_{{ if eq .OS "linux" }}Linux{{ else }}{{if eq .OS "darwin" }}macOS{{ else }}Windows{{ end }}{{ end }}_{{ if eq .Arch "amd64" }}amd64_64bit{{ else }}arm64_64bit{{end}}.tar.gz
     version: "1.11.0"
     tgzPaths:
-    - "ascii-image-converter_Linux_amd64_64bit/ascii-image-converter"
+      - ascii-image-converter_{{ if eq .OS "linux" }}Linux{{ else }}{{if eq .OS "darwin" }}macOS{{ else }}Windows{{ end }}{{ end }}_{{ if eq .Arch "amd64" }}amd64_64bit{{ else }}arm64_64bit{{end}}/ascii-image-converter
     sha:
       linux-amd64: "17f87445971fdb491c6ca9d4beed67044a330339b47775adffb8e3cb898ec15d"
+      darwin-amd64: "c22c862818b4af5be9cdd11d49cf147cb2fea354a5d13ad3ef54702b5b1391a4"
